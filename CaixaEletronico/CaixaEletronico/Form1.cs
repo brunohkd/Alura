@@ -96,5 +96,181 @@ namespace CaixaEletronico
                 MessageBox.Show("Saldo Insuficiente.");
             }
         }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            double valorDaNotaFiscal = 5000.0;
+
+            if (valorDaNotaFiscal < 1000)
+            {
+                MessageBox.Show("Imposto 2%: " + (valorDaNotaFiscal * 2) / 100);
+            }
+            else if (valorDaNotaFiscal >= 1000 && valorDaNotaFiscal < 3000)
+            {
+                MessageBox.Show("Imposto 2,5%: " + (valorDaNotaFiscal * 2.5) / 100);
+            }
+            else if (valorDaNotaFiscal >= 3000 && valorDaNotaFiscal < 7000)
+            {
+                MessageBox.Show("Imposto 2,8%: " + (valorDaNotaFiscal * 2.8) / 100);
+            }
+            else if (valorDaNotaFiscal >= 7000)
+            {
+                MessageBox.Show("Imposto 3%: " + (valorDaNotaFiscal * 3) / 100);
+            }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            int total = 0;
+            for (int i = 0; i < 10; i++)
+            {
+                total += 1;
+            }
+            MessageBox.Show("Resultado: " + total);
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            int i = 10;
+            while (i < 5)
+            {
+                MessageBox.Show("Entrei no while");
+            }
+
+            do
+            {
+                MessageBox.Show("Entrei no do..while");
+            } while (i < 5);
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            for(int i = 1; i<= 100; i++)
+            {
+                if (i % 3 == 0)
+                {
+                    MessageBox.Show(i + " é múltiplo de 3.");
+                }
+            }
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            int fatorial = 1;
+            for (int n = 1; n <= 10; n++)
+            {
+                fatorial = fatorial * n;
+                MessageBox.Show("Fatorial(" + n + ") = " + fatorial);
+            }
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            string serieFibonacci = "";
+            int anterior = 0;
+            int atual = 1;
+            while (atual <= 100)
+            {
+                serieFibonacci += atual + " ";
+                int proximo = anterior + atual;
+                anterior = atual;
+                atual = proximo;
+            }
+            MessageBox.Show("A série de Fibonacci até 100: " + serieFibonacci);
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            int qtdLinhas = 5;
+            string triangulo = "";
+            for (int linha = 1; linha <= qtdLinhas; linha++)
+            {
+                for (int coluna = 1; coluna <= linha; coluna++)
+                {
+                    triangulo += (linha * coluna) + " ";
+                }
+                triangulo += "\n";
+            }
+            MessageBox.Show(triangulo);
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            int divisivel1 = 15 % 3;
+            int divisivel2 = 15 % 4;
+
+            string msg = "";
+
+            if(divisivel1 == 0)
+            {
+                msg = "15 é divisível por 3 e ";
+            } else
+            {
+                msg = "15 não é divisível por 3 e ";
+            }
+
+            if(divisivel2 == 0)
+            {
+                msg += "é divisível por 4.";
+            } else
+            {
+                msg += "não é divisível por 4.";
+            }
+
+            MessageBox.Show(msg);
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            string div3 = "De 0 a 30 divisíveis por 3: ";
+            string div4 = "De 0 a 30 divisíveis por 4: ";
+
+            int count3 = 0;
+            int count4 = 0;
+
+            for (int i = 0; i <= 30; i++)
+            {
+                if(i % 3 == 0)
+                {
+                    if (count3 == 0)
+                    {
+                        count3 += 1;
+                        div3 += i;
+                    }
+                    else { 
+                        div3 += ", " + i;
+                    }
+                }
+                if (i % 4 == 0)
+                {
+                    if (count4 == 0) { 
+                        count4 += 1;
+                        div4 += i;
+                    }
+                    else { 
+                        div4 += ", " + i;
+                    }
+                }
+            }
+
+            MessageBox.Show(div3 + ".\n" + div4 + ".");
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+
+            int result = 0;
+
+            for(int i = 1; i <=100; i++)
+            {
+                if(i % 3 != 0)
+                {
+                    result += i;
+                }
+
+            }
+
+            MessageBox.Show(result.ToString());
+        }
     }
 }
