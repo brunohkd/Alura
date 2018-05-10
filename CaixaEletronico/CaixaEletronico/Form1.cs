@@ -12,265 +12,150 @@ namespace CaixaEletronico
 {
     public partial class Form1 : Form
     {
+        Conta[] contas;
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-            int numeroDaConta;
-            numeroDaConta = 1;
+            contas = new Conta[2];
+            contas[0] = new Conta();
+            contas[0].numero = 1;
+            contas[0].Cliente = new Cliente();
+            contas[0].Cliente.nome = "Victor";
 
-            double saldo = 100.0;
-            double valor = 10.0;
-            double saldoAposSaque = 100.0 - valor;
+            contas[1] = new Conta();
+            contas[1].numero = 2;
+            contas[1].Cliente = new Cliente();
+            contas[1].Cliente.nome = "Mario";
 
-
-            MessageBox.Show("O saldo atual é: " + saldoAposSaque);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            int idadeBianca = 23;
-            int idadeJoao = 26;
-            int idadeBruno = 27;
-
-            MessageBox.Show("A média de idade é: " + (idadeBianca+idadeJoao+idadeBruno)/3);
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            
-            MessageBox.Show("Valor: " + (10*(1+2)));
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            string ola = "Hello ";
-            string mundo = "World ";
-            string daCaelum = "da Caelum";
-            string texto = ola + mundo + daCaelum;
-
-            MessageBox.Show(texto);
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            double pi = 3.14;
-            int piQuebrado = (int)pi;
-
-            MessageBox.Show("Valor " + piQuebrado);
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            //báscara
-
-            int a = 12;
-            int b = -3;
-            int c = 5;
-            double delta;
-            double a1;
-            double a2;
-
-            delta = b * b - 4 * a * c;
-            a1 = (-b + Math.Sqrt(delta)) / (2 * a);
-            a2 = (-b - Math.Sqrt(delta)) / (2 * a);
-
-            MessageBox.Show("Valor 1 = " + a1 + ", Valor 2 = " + a2);
-
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-            double saldo = 100.0;
-            double valor = 10.0;
-
-            bool podeSacar = (valor <= saldo) && (valor >= 0);
-
-            if(podeSacar) {
-                saldo = saldo - valor;
-                MessageBox.Show("Saque Realizado com sucesso. Seu saldo é de: " + saldo);
-            } else {
-                MessageBox.Show("Saldo Insuficiente.");
-            }
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-            double valorDaNotaFiscal = 5000.0;
-
-            if (valorDaNotaFiscal < 1000)
-            {
-                MessageBox.Show("Imposto 2%: " + (valorDaNotaFiscal * 2) / 100);
-            }
-            else if (valorDaNotaFiscal >= 1000 && valorDaNotaFiscal < 3000)
-            {
-                MessageBox.Show("Imposto 2,5%: " + (valorDaNotaFiscal * 2.5) / 100);
-            }
-            else if (valorDaNotaFiscal >= 3000 && valorDaNotaFiscal < 7000)
-            {
-                MessageBox.Show("Imposto 2,8%: " + (valorDaNotaFiscal * 2.8) / 100);
-            }
-            else if (valorDaNotaFiscal >= 7000)
-            {
-                MessageBox.Show("Imposto 3%: " + (valorDaNotaFiscal * 3) / 100);
-            }
-        }
-
-        private void button9_Click(object sender, EventArgs e)
-        {
-            int total = 0;
-            for (int i = 0; i < 10; i++)
-            {
-                total += 1;
-            }
-            MessageBox.Show("Resultado: " + total);
-        }
-
-        private void button10_Click(object sender, EventArgs e)
-        {
-            int i = 10;
-            while (i < 5)
-            {
-                MessageBox.Show("Entrei no while");
+            foreach (Conta conta in contas) { 
+                comboConta.Items.Add(conta.Cliente.nome);
+                comboDestino.Items.Add(conta.Cliente.nome);
             }
 
-            do
-            {
-                MessageBox.Show("Entrei no do..while");
-            } while (i < 5);
         }
 
-        private void button11_Click(object sender, EventArgs e)
+        private void comboConta_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for(int i = 1; i<= 100; i++)
+            int index = comboConta.SelectedIndex;
+            Conta c = contas[index];
+
+            textoTitular.Text = c.Cliente.nome;
+            textoSaldo.Text = c.Saldo.ToString();
+            textoNumero.Text = c.numero.ToString();
+        }
+
+        private void btDeposito_Click(object sender, EventArgs e)
+        {
+            if(textoValor.Text != null && textoValor.Text != "")
             {
-                if (i % 3 == 0)
+                try
                 {
-                    MessageBox.Show(i + " é múltiplo de 3.");
-                }
-            }
-        }
 
-        private void button12_Click(object sender, EventArgs e)
-        {
-            int fatorial = 1;
-            for (int n = 1; n <= 10; n++)
-            {
-                fatorial = fatorial * n;
-                MessageBox.Show("Fatorial(" + n + ") = " + fatorial);
-            }
-        }
+                    double valor = Convert.ToDouble(textoValor.Text);
 
-        private void button13_Click(object sender, EventArgs e)
-        {
-            string serieFibonacci = "";
-            int anterior = 0;
-            int atual = 1;
-            while (atual <= 100)
-            {
-                serieFibonacci += atual + " ";
-                int proximo = anterior + atual;
-                anterior = atual;
-                atual = proximo;
-            }
-            MessageBox.Show("A série de Fibonacci até 100: " + serieFibonacci);
-        }
+                    int index = comboConta.SelectedIndex;
+                    Conta c = contas[index];
 
-        private void button14_Click(object sender, EventArgs e)
-        {
-            int qtdLinhas = 5;
-            string triangulo = "";
-            for (int linha = 1; linha <= qtdLinhas; linha++)
-            {
-                for (int coluna = 1; coluna <= linha; coluna++)
+                    c.Deposita(valor);
+
+                    MessageBox.Show("Valor Depositado com sucesso!");
+
+                    textoSaldo.Text = c.Saldo.ToString();
+
+                } catch (Exception ex)
                 {
-                    triangulo += (linha * coluna) + " ";
+                    MessageBox.Show("O campo valor deve ser numérico.");
                 }
-                triangulo += "\n";
-            }
-            MessageBox.Show(triangulo);
-        }
-
-        private void button15_Click(object sender, EventArgs e)
-        {
-            int divisivel1 = 15 % 3;
-            int divisivel2 = 15 % 4;
-
-            string msg = "";
-
-            if(divisivel1 == 0)
-            {
-                msg = "15 é divisível por 3 e ";
             } else
             {
-                msg = "15 não é divisível por 3 e ";
+                MessageBox.Show("O campo Valor está vazio.");
             }
-
-            if(divisivel2 == 0)
-            {
-                msg += "é divisível por 4.";
-            } else
-            {
-                msg += "não é divisível por 4.";
-            }
-
-            MessageBox.Show(msg);
         }
 
-        private void button16_Click(object sender, EventArgs e)
+        private void btSaque_Click(object sender, EventArgs e)
         {
-            string div3 = "De 0 a 30 divisíveis por 3: ";
-            string div4 = "De 0 a 30 divisíveis por 4: ";
-
-            int count3 = 0;
-            int count4 = 0;
-
-            for (int i = 0; i <= 30; i++)
+            if (textoValor.Text != null && textoValor.Text != "")
             {
-                if(i % 3 == 0)
+                try
                 {
-                    if (count3 == 0)
+
+                    double valor = Convert.ToDouble(textoValor.Text);
+
+                    int index = comboConta.SelectedIndex;
+                    Conta c = contas[index];
+
+                    bool v = c.Saca(valor);
+
+                    if (v) { 
+                        MessageBox.Show("Valor Sacado com sucesso!");
+                        textoSaldo.Text = c.Saldo.ToString();
+                    }
+                    else
+                        MessageBox.Show("Não foi possível efetuar o saque.");
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("O campo valor deve ser numérico.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("O campo Valor está vazio.");
+            }
+        }
+
+        private void comboDestino_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            int index = comboDestino.SelectedIndex;
+            Conta c = contas[index];
+
+            if (c.Cliente.nome != null && c.Cliente.nome != "")
+                btTransferencia.Enabled = true;
+            else
+                btTransferencia.Enabled = false;
+        }
+
+        private void btTransferencia_Click(object sender, EventArgs e)
+        {
+            if (textoValor.Text != null && textoValor.Text != "")
+            {
+                try
+                {
+
+                    double valor = Convert.ToDouble(textoValor.Text);
+
+                    int index = comboDestino.SelectedIndex;
+                    Conta c = contas[index];
+
+                    bool v = c.Transfere(valor, c);
+
+                    if (v)
                     {
-                        count3 += 1;
-                        div3 += i;
+                        MessageBox.Show("Valor Transferido com sucesso!");
+                        textoSaldo.Text = c.Saldo.ToString();
                     }
-                    else { 
-                        div3 += ", " + i;
-                    }
+                    else
+                        MessageBox.Show("Não foi possível efetuar a transferência.");
+
                 }
-                if (i % 4 == 0)
+                catch (Exception ex)
                 {
-                    if (count4 == 0) { 
-                        count4 += 1;
-                        div4 += i;
-                    }
-                    else { 
-                        div4 += ", " + i;
-                    }
+                    MessageBox.Show("O campo valor deve ser numérico.");
                 }
             }
-
-            MessageBox.Show(div3 + ".\n" + div4 + ".");
-        }
-
-        private void button17_Click(object sender, EventArgs e)
-        {
-
-            int result = 0;
-
-            for(int i = 1; i <=100; i++)
+            else
             {
-                if(i % 3 != 0)
-                {
-                    result += i;
-                }
-
+                MessageBox.Show("O campo Valor está vazio.");
             }
 
-            MessageBox.Show(result.ToString());
+            
         }
     }
 }

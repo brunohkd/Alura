@@ -28,254 +28,198 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
+            this.comboConta = new System.Windows.Forms.ComboBox();
+            this.textoTitular = new System.Windows.Forms.TextBox();
+            this.textoSaldo = new System.Windows.Forms.TextBox();
+            this.textoNumero = new System.Windows.Forms.TextBox();
+            this.labelContas = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textoValor = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btDeposito = new System.Windows.Forms.Button();
+            this.btSaque = new System.Windows.Forms.Button();
+            this.comboDestino = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btTransferencia = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // comboConta
             // 
-            this.button1.Location = new System.Drawing.Point(55, 18);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.comboConta.FormattingEnabled = true;
+            this.comboConta.Location = new System.Drawing.Point(117, 272);
+            this.comboConta.Name = "comboConta";
+            this.comboConta.Size = new System.Drawing.Size(159, 21);
+            this.comboConta.TabIndex = 1;
+            this.comboConta.SelectedIndexChanged += new System.EventHandler(this.comboConta_SelectedIndexChanged);
             // 
-            // button2
+            // textoTitular
             // 
-            this.button2.Location = new System.Drawing.Point(55, 59);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.textoTitular.Location = new System.Drawing.Point(117, 77);
+            this.textoTitular.Name = "textoTitular";
+            this.textoTitular.Size = new System.Drawing.Size(173, 20);
+            this.textoTitular.TabIndex = 2;
             // 
-            // button3
+            // textoSaldo
             // 
-            this.button3.Location = new System.Drawing.Point(55, 107);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.textoSaldo.Location = new System.Drawing.Point(117, 129);
+            this.textoSaldo.Name = "textoSaldo";
+            this.textoSaldo.Size = new System.Drawing.Size(173, 20);
+            this.textoSaldo.TabIndex = 3;
             // 
-            // button4
+            // textoNumero
             // 
-            this.button4.Location = new System.Drawing.Point(55, 154);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.textoNumero.Location = new System.Drawing.Point(117, 103);
+            this.textoNumero.Name = "textoNumero";
+            this.textoNumero.Size = new System.Drawing.Size(173, 20);
+            this.textoNumero.TabIndex = 4;
             // 
-            // button5
+            // labelContas
             // 
-            this.button5.Location = new System.Drawing.Point(55, 193);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.labelContas.AutoSize = true;
+            this.labelContas.Location = new System.Drawing.Point(60, 272);
+            this.labelContas.Name = "labelContas";
+            this.labelContas.Size = new System.Drawing.Size(40, 13);
+            this.labelContas.TabIndex = 5;
+            this.labelContas.Text = "Contas";
             // 
-            // button6
+            // label1
             // 
-            this.button6.Location = new System.Drawing.Point(55, 239);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 5;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(61, 77);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(39, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Titular:";
             // 
-            // button7
+            // label2
             // 
-            this.button7.Location = new System.Drawing.Point(55, 283);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 6;
-            this.button7.Text = "button7";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(63, 129);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(37, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Saldo:";
             // 
-            // button8
+            // label3
             // 
-            this.button8.Location = new System.Drawing.Point(55, 325);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 7;
-            this.button8.Text = "button8";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(51, 106);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Número:";
             // 
-            // panel1
+            // textoValor
             // 
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.button8);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button7);
-            this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.button6);
-            this.panel1.Controls.Add(this.button4);
-            this.panel1.Controls.Add(this.button5);
-            this.panel1.Location = new System.Drawing.Point(12, 45);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 364);
-            this.panel1.TabIndex = 8;
+            this.textoValor.Location = new System.Drawing.Point(117, 178);
+            this.textoValor.Name = "textoValor";
+            this.textoValor.Size = new System.Drawing.Size(173, 20);
+            this.textoValor.TabIndex = 9;
             // 
-            // button9
+            // label4
             // 
-            this.button9.Location = new System.Drawing.Point(328, 63);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 23);
-            this.button9.TabIndex = 9;
-            this.button9.Text = "button9";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(64, 184);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(34, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Valor:";
             // 
-            // button10
+            // btDeposito
             // 
-            this.button10.Location = new System.Drawing.Point(328, 104);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(75, 23);
-            this.button10.TabIndex = 10;
-            this.button10.Text = "button10";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
+            this.btDeposito.Location = new System.Drawing.Point(117, 218);
+            this.btDeposito.Name = "btDeposito";
+            this.btDeposito.Size = new System.Drawing.Size(75, 23);
+            this.btDeposito.TabIndex = 11;
+            this.btDeposito.Text = "Depósito";
+            this.btDeposito.UseVisualStyleBackColor = true;
+            this.btDeposito.Click += new System.EventHandler(this.btDeposito_Click);
             // 
-            // button11
+            // btSaque
             // 
-            this.button11.Location = new System.Drawing.Point(328, 152);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(75, 23);
-            this.button11.TabIndex = 11;
-            this.button11.Text = "button11";
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
+            this.btSaque.Location = new System.Drawing.Point(210, 218);
+            this.btSaque.Name = "btSaque";
+            this.btSaque.Size = new System.Drawing.Size(75, 23);
+            this.btSaque.TabIndex = 12;
+            this.btSaque.Text = "Saque";
+            this.btSaque.UseVisualStyleBackColor = true;
+            this.btSaque.Click += new System.EventHandler(this.btSaque_Click);
             // 
-            // button12
+            // comboDestino
             // 
-            this.button12.Location = new System.Drawing.Point(328, 199);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(75, 23);
-            this.button12.TabIndex = 12;
-            this.button12.Text = "button12";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
+            this.comboDestino.FormattingEnabled = true;
+            this.comboDestino.Location = new System.Drawing.Point(117, 312);
+            this.comboDestino.Name = "comboDestino";
+            this.comboDestino.Size = new System.Drawing.Size(159, 21);
+            this.comboDestino.TabIndex = 13;
+            this.comboDestino.SelectedIndexChanged += new System.EventHandler(this.comboDestino_SelectedIndexChanged);
             // 
-            // button13
+            // label5
             // 
-            this.button13.Location = new System.Drawing.Point(328, 238);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(75, 23);
-            this.button13.TabIndex = 13;
-            this.button13.Text = "button13";
-            this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(60, 315);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(43, 13);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Destino";
             // 
-            // button14
+            // btTransferencia
             // 
-            this.button14.Location = new System.Drawing.Point(328, 284);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(75, 23);
-            this.button14.TabIndex = 14;
-            this.button14.Text = "button14";
-            this.button14.UseVisualStyleBackColor = true;
-            this.button14.Click += new System.EventHandler(this.button14_Click);
-            // 
-            // button15
-            // 
-            this.button15.Location = new System.Drawing.Point(328, 327);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(75, 23);
-            this.button15.TabIndex = 15;
-            this.button15.Text = "button15";
-            this.button15.UseVisualStyleBackColor = true;
-            this.button15.Click += new System.EventHandler(this.button15_Click);
-            // 
-            // button16
-            // 
-            this.button16.Location = new System.Drawing.Point(328, 369);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(75, 23);
-            this.button16.TabIndex = 16;
-            this.button16.Text = "button16";
-            this.button16.UseVisualStyleBackColor = true;
-            this.button16.Click += new System.EventHandler(this.button16_Click);
-            // 
-            // button17
-            // 
-            this.button17.Location = new System.Drawing.Point(510, 63);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(75, 23);
-            this.button17.TabIndex = 17;
-            this.button17.Text = "button17";
-            this.button17.UseVisualStyleBackColor = true;
-            this.button17.Click += new System.EventHandler(this.button17_Click);
+            this.btTransferencia.Enabled = false;
+            this.btTransferencia.Location = new System.Drawing.Point(303, 312);
+            this.btTransferencia.Name = "btTransferencia";
+            this.btTransferencia.Size = new System.Drawing.Size(82, 23);
+            this.btTransferencia.TabIndex = 15;
+            this.btTransferencia.Text = "Transferência";
+            this.btTransferencia.UseVisualStyleBackColor = true;
+            this.btTransferencia.Click += new System.EventHandler(this.btTransferencia_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button17);
-            this.Controls.Add(this.button16);
-            this.Controls.Add(this.button15);
-            this.Controls.Add(this.button14);
-            this.Controls.Add(this.button13);
-            this.Controls.Add(this.button12);
-            this.Controls.Add(this.button11);
-            this.Controls.Add(this.button10);
-            this.Controls.Add(this.button9);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(423, 345);
+            this.Controls.Add(this.btTransferencia);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.comboDestino);
+            this.Controls.Add(this.btSaque);
+            this.Controls.Add(this.btDeposito);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.textoValor);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelContas);
+            this.Controls.Add(this.textoNumero);
+            this.Controls.Add(this.textoSaldo);
+            this.Controls.Add(this.textoTitular);
+            this.Controls.Add(this.comboConta);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.panel1.ResumeLayout(false);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button16;
-        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.ComboBox comboConta;
+        private System.Windows.Forms.TextBox textoTitular;
+        private System.Windows.Forms.TextBox textoSaldo;
+        private System.Windows.Forms.TextBox textoNumero;
+        private System.Windows.Forms.Label labelContas;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textoValor;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btDeposito;
+        private System.Windows.Forms.Button btSaque;
+        private System.Windows.Forms.ComboBox comboDestino;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btTransferencia;
     }
 }
 
