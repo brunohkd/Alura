@@ -5,26 +5,31 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace App1
+namespace App1.Views
 {
 
     public class Veiculo
     {
         public string Nome { get; set; }
         public decimal Preco { get; set; }
+
+        public bool TemFreioABS { get; set; }
+        public bool TemArCondicionado { get; set; }
+        public bool TemMP3Player { get; set; }
+
         public string PrecoFormatado
         {
             get { return string.Format("R$ {0}", Preco); }
         }
     }
 
-	public partial class MainPage : ContentPage
+	public partial class ListagemView : ContentPage
 	{
 
         public List<Veiculo> Veiculos { get; set; }
 
 
-		public MainPage()
+		public ListagemView()
 		{
 			InitializeComponent();
 
@@ -45,7 +50,7 @@ namespace App1
         {
             var veiculo = (Veiculo) e.Item;
 
-            DisplayAlert("Test Drive", string.Format("Você tocou no modelo '{0}', que custa {1}", veiculo.Nome, veiculo.PrecoFormatado), "OK");
+            Navigation.PushAsync(new Views.DetalheView(veiculo));
         }
     }
 }

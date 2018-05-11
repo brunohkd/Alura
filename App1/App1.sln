@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App1.iOS", "App1\App1.iOS\A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App1.UWP", "App1\App1.UWP\App1.UWP.csproj", "{8BD12DC8-5338-4E53-A6F7-F8E4D74EC7F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App1", "App1\App1\App1.csproj", "{34A1E92C-D234-42DF-B47A-075BAEFAA6C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App1", "App1\App1\App1.csproj", "{34A1E92C-D234-42DF-B47A-075BAEFAA6C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -148,7 +148,6 @@ Global
 		{72B6DFCB-031A-4AD1-AC50-11A53F54CA86}.AppStore|x86.Build.0 = AppStore|iPhone
 		{72B6DFCB-031A-4AD1-AC50-11A53F54CA86}.AppStore|x86.Deploy.0 = AppStore|iPhone
 		{72B6DFCB-031A-4AD1-AC50-11A53F54CA86}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
-		{72B6DFCB-031A-4AD1-AC50-11A53F54CA86}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
 		{72B6DFCB-031A-4AD1-AC50-11A53F54CA86}.Debug|Any CPU.Deploy.0 = Debug|iPhoneSimulator
 		{72B6DFCB-031A-4AD1-AC50-11A53F54CA86}.Debug|ARM.ActiveCfg = Debug|iPhone
 		{72B6DFCB-031A-4AD1-AC50-11A53F54CA86}.Debug|ARM.Build.0 = Debug|iPhone
