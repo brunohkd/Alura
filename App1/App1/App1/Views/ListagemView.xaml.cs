@@ -18,7 +18,8 @@ namespace App1.Views
 		{
 		    InitializeComponent();
             this.ViewModel = new ListagemViewModel();
-            this.BindingContext = this.ViewModel;
+
+            BindingContext = this.ViewModel;
         }
 
         protected async override void OnAppearing()
@@ -32,7 +33,6 @@ namespace App1.Views
              });
 
             await this.ViewModel.GetVeiculos();
-
         }
 
         protected override void OnDisappearing()
