@@ -17,7 +17,10 @@
                 </TableRoot>
             </TableView>
 
-            <Button Text="Próximo" Clicked="Button_Clicked" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" />
+            <Button x:Name="buttonProximo" Text="Próximo" 
+                    VerticalOptions="EndAndExpand" 
+                    HorizontalOptions="FillAndExpand" 
+                    Command="{Binding ProximoCommand}"/>
 
         </StackLayout>
     </ContentPage.Content>

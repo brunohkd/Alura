@@ -4,11 +4,9 @@
              xmlns:local="clr-namespace:App1"
              x:Class="App1.Views.ListagemView"
              Title="Lista de Veículos">
-
     <StackLayout BackgroundColor="#FFFFFF">
         <ScrollView Orientation="Vertical">
-            <ListView x:Name="listViewVeiculos" ItemsSource="{Binding Veiculos}" Margin="25"
-                      ItemTapped="listViewVeiculos_ItemTapped">
+            <ListView x:Name="listViewVeiculos" ItemsSource="{Binding Veiculos}" Margin="25" SelectedItem="{Binding VeiculoSelecionado}" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

@@ -8,15 +8,29 @@
             <TableView Intent="Form">
                 <TableRoot>
                     <TableSection Title="Seus Dados">
-                        <EntryCell Label="Nome:" />
-                        <EntryCell Label="Fone:" Keyboard="Telephone"/>
-                        <EntryCell Label="E-mail:" Keyboard="Email" />
+                        <EntryCell Label="Nome: " Text="{Binding Agendamento.Nome}"/>
+                        <EntryCell Label="Fone: " Keyboard="Telephone" Text="{Binding Agendamento.Fone}"/>
+                        <EntryCell Label="E-mail: " Keyboard="Email" Text="{Binding Agendamento.Email}"/>
                     </TableSection>
                     <TableSection Title="Agendamento">
-                        <EntryCell Label="Data:"  />
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Margin="12,0,0,0">
+                                <Label Text="Data: " VerticalOptions="CenterAndExpand"></Label>
+                                <DatePicker Date="{Binding Agendamento.DataAgendamento}" HorizontalOptions="CenterAndExpand"></DatePicker>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Margin="12,0,0,0">
+                                <Label Text="Hora: " VerticalOptions="CenterAndExpand"></Label>
+                                <TimePicker Time="{Binding Agendamento.HoraAgendamento}" HorizontalOptions="CenterAndExpand"/>
+                            </StackLayout>
+                        </ViewCell>
                     </TableSection>
                 </TableRoot>
             </TableView>
+
+            <Button HorizontalOptions="FillAndExpand" VerticalOptions="End" Text="Agendar" Command="{Binding AgendarCommand}"></Button>
+            
         </StackLayout>
 
     </ContentPage.Content>
