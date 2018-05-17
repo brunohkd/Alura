@@ -1,3 +1,4 @@
+using App1.Models;
 using App1.Views;
 using System;
 using Xamarin.Forms;
@@ -12,12 +13,20 @@ namespace App1
 		{
 			InitializeComponent();
 
-			MainPage = new NavigationPage(new ListagemView());
+            MainPage = new LoginView();
+			//MainPage = new NavigationPage(new ListagemView());
 		}
 
 		protected override void OnStart ()
 		{
-			// Handle when your app starts
+            // Handle when your app starts
+
+            MessagingCenter.Subscribe<Usuario>(this, "SucessoLogin", (msg) =>
+            {
+                //TODO Lógica para login de usuário
+                MainPage = new NavigationPage(new ListagemView());
+            });
+
 		}
 
 		protected override void OnSleep ()

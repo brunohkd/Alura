@@ -156,4 +156,7 @@
       <Name>App1</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\aluracar.png" />
+  </ItemGroup>
 </Project>
