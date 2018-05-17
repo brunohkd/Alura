@@ -4,11 +4,13 @@
              xmlns:local="clr-namespace:App1"
              xmlns:vw="clr-namespace:App1.ViewModels"
              x:Class="App1.Views.ListagemView"
-             Title="Lista de Veículos">
+             Title="Test Drive">
  
     <StackLayout BackgroundColor="#FFFFFF">
+        <ActivityIndicator IsRunning="{Binding Aguarde}" IsVisible="{Binding Aguarde}">
+        </ActivityIndicator>
         <ScrollView Orientation="Vertical">
-            <ListView x:Name="listViewVeiculos" ItemsSource="{Binding Veiculos}" Margin="25" SelectedItem="{Binding VeiculoSelecionado}" >
+            <ListView x:Name="listViewVeiculos" ItemsSource="{Binding Veiculos}" Margin="25" SelectedItem="{Binding VeiculoSelecionado, Mode=TwoWay}" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

@@ -26,29 +26,35 @@ namespace App1.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            MessagingCenter.Subscribe<Agendamento>(this, "Agendamento", (msg) =>
+            MessagingCenter.Subscribe<Agendamento>(this, "Agendamento", async (msg) =>
             {
-                
-                DisplayAlert("Agendamento", 
-string.Format(@"Veiculo: {0}
-Nome: {1}
-Fone: {2}
-Email: {3}
-Data Agendamento: {4}
-Hora Agendamento: {5}",
-                    msg.Veiculo.Nome,
-                    msg.Nome,
-                    msg.Fone,
-                    msg.Email,
-                    msg.DataAgendamento.ToString("dd/MM/yyyy"),
-                    msg.HoraAgendamento), "OK");
+
+                var confirma = await DisplayAlert("Salvar Agendamento", "Você confirma o agendamento?", "Sim", "Não");
+
+                if(confirma)
+                {
+                    this.ViewModel.SalvarAgendamento();
+                }
             });
+
+            MessagingCenter.Subscribe<Agendamento>(this, "SucessoAgendamento", (msg) =>
+            {
+                DisplayAlert("Agendamento", "Agendamento enviado com sucesso!", "OK");
+            });
+
+            MessagingCenter.Subscribe<ArgumentException>(this, "ErroAgendamento", (msg) =>
+            {
+                DisplayAlert("Agendamento", "Falha ao enviar Agendamento. Tente novamente mais tarde.", "Fechar");
+            });
+
         }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
             MessagingCenter.Unsubscribe<Agendamento>(this, "Agendamento");
+            MessagingCenter.Unsubscribe<Agendamento>(this, "SucessoAgendamento");
+            MessagingCenter.Unsubscribe<ArgumentException>(this, "ErroAgendamento");
         }
 
     }

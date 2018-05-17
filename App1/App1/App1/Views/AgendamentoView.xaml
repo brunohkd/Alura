@@ -29,7 +29,10 @@
                 </TableRoot>
             </TableView>
 
-            <Button HorizontalOptions="FillAndExpand" VerticalOptions="End" Text="Agendar" Command="{Binding AgendarCommand}"></Button>
+            <Button HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="End" 
+                    Text="Agendar" 
+                    Command="{Binding AgendarCommand}"></Button>
             
         </StackLayout>
 

@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace App1.ViewModels
 {
-    public class DetalheViewModel : INotifyPropertyChanged
+    public class DetalheViewModel : BaseViewModel
     {
         public Veiculo Veiculo { get; set; }
         public string TextoFreioABS { get { return string.Format("Freio ABS - R$ {0}", Veiculo.FREIO_ABS); } }
@@ -73,13 +73,6 @@ namespace App1.ViewModels
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(ValorTotal));
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged([CallerMemberName] string name = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
         public ICommand ProximoCommand { get; set; }

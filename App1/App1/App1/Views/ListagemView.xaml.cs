@@ -19,7 +19,7 @@ namespace App1.Views
 		    InitializeComponent();
             this.ViewModel = new ListagemViewModel();
 
-            BindingContext = this.ViewModel;
+            this.BindingContext = this.ViewModel;
         }
 
         protected async override void OnAppearing()
@@ -33,6 +33,7 @@ namespace App1.Views
              });
 
             await this.ViewModel.GetVeiculos();
+
         }
 
         protected override void OnDisappearing()
