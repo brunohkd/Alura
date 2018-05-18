@@ -14,33 +14,34 @@ namespace App1
 
         public async Task FazerLogin(Login login)
         {
-            try
+            using (var cliente = new HttpClient())
             {
-                using (var cliente = new HttpClient())
+                var camposFormulario = new FormUrlEncodedContent(new[]
                 {
-                    var camposFormulario = new FormUrlEncodedContent(new[]
-                    {
-                        new KeyValuePair<string, string>("email", login.email), //joao@alura.com
-                        new KeyValuePair<string, string>("senha", login.senha) //alura123
-                    });
+                    new KeyValuePair<string, string>("email", login.email), //joao@alura.com
+                    new KeyValuePair<string, string>("senha", login.senha) //alura123
+                });
 
-                    //cliente.BaseAddress = new Uri(URL_POST_LOGIN);
-                    var resposta = await cliente.PostAsync(URL_POST_LOGIN, camposFormulario);
+                HttpResponseMessage resposta = null;
 
-                    if (resposta.IsSuccessStatusCode)
-                    {
-                        MessagingCenter.Send<Usuario>(new Usuario(), "SucessoLogin");
-                    }
-                    else
-                    {
-                        MessagingCenter.Send<LoginException>(new LoginException("Usuário ou Senha incorretos."), "FalhaLogin");
-                    }
+                try
+                {
+                    resposta = await cliente.PostAsync(URL_POST_LOGIN, camposFormulario);
                 }
-            }
-            catch 
-            {
-                MessagingCenter.Send<LoginException>(new LoginException(@"Ocorreu um erro inesperado.
+                catch 
+                {
+                    MessagingCenter.Send<LoginException>(new LoginException(@"Ocorreu um erro inesperado.
 Por favor, verifique sua conexão e tente novamente mais tarde."), "FalhaLogin");
+                }
+
+                if (resposta.IsSuccessStatusCode)
+                {
+                    MessagingCenter.Send<Usuario>(new Usuario(), "SucessoLogin");
+                }
+                else
+                {
+                    MessagingCenter.Send<LoginException>(new LoginException("Usuário ou Senha incorretos."), "FalhaLogin");
+                }
             }
         }
     }

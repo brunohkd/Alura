@@ -6,7 +6,7 @@ namespace App1.Models
 {
     public class Usuario
     {
-        public string Login { get; set; }
-        public string Senha { get; set; }
+        public string nome { get; set; }
+        public string email { get; set; }
     }
 }

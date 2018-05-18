@@ -21,10 +21,11 @@ namespace App1
 		{
             // Handle when your app starts
 
-            MessagingCenter.Subscribe<Usuario>(this, "SucessoLogin", (msg) =>
+            MessagingCenter.Subscribe<Usuario>(this, "SucessoLogin", (usuario) =>
             {
                 //TODO Lógica para login de usuário
-                MainPage = new NavigationPage(new ListagemView());
+                //MainPage = new NavigationPage(new ListagemView());
+                MainPage = new MasterDetailView(usuario);
             });
 
 		}
