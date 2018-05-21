@@ -2,17 +2,17 @@
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App1.Views.MasterDetailView"
-             xmlns:pages="clr-namespace:App1.Views">
+             xmlns:pag="clr-namespace:App1.Views">
     
-    <MasterDetailPage.Master>
-        <ContentPage Title="Testes"></ContentPage>
-        <pages:MasterView />
-    </MasterDetailPage.Master>
+    <!--<MasterDetailPage.Master>
+        --><!--<ContentPage x:Name="MasterPage" />--><!--
+        <pag:MasterView />
+    </MasterDetailPage.Master>-->
     
     <MasterDetailPage.Detail>
         <NavigationPage>
             <x:Arguments>
-                <pages:ListagemView />
+                <pag:ListagemView />
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>

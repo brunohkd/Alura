@@ -1,4 +1,5 @@
 ﻿using App1.Models;
+using App1.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +15,13 @@ namespace App1.Views
     public partial class MasterDetailView : MasterDetailPage
     {
 
-        private readonly Usuario usuario;
+        public Usuario usuario;
 
         public MasterDetailView(Usuario usuario)
         {
             InitializeComponent();
             this.usuario = usuario;
+            this.Master = new MasterView(usuario);
         }
 
     }

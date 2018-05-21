@@ -1,17 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App1.Views.MasterView"
-             Title="Perfil">
-    <ContentPage.Content>
-        <Frame BorderColor="Silver" Margin="5" VerticalOptions="CenterAndExpand">
-            <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-                <Label Text="{Binding Nome}" />
-                <BoxView Color="Gray" HeightRequest="1" HorizontalOptions="Fill" />
-                <Label Text="{Binding Email}"/>
-                <BoxView Color="Gray" HeightRequest="1" HorizontalOptions="Fill" />
-                <Button Text="Perfil" />
-            </StackLayout>
-        </Frame>
-    </ContentPage.Content>
-</ContentPage>
+            Title="Perfil">
+    <TabbedPage.Children>
+        <ContentPage Title="Usuário">
+            <Frame BorderColor="Silver" Margin="5" VerticalOptions="CenterAndExpand">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <Label Text="{Binding Nome}" />
+                    <BoxView Color="Gray" HeightRequest="1" HorizontalOptions="Fill" />
+                    <Label Text="{Binding Email}"/>
+                    <BoxView Color="Gray" HeightRequest="1" HorizontalOptions="Fill" />
+                    <Button Text="Perfil" Command="{Binding EditarPerfilCommand}"/>
+                    <Button Text="Meus Agendamentos" />
+                    <Button Text="Novo Agendamento" />
+                </StackLayout>
+            </Frame>
+        </ContentPage>
+        <ContentPage Title="Editar">
+            <Frame BorderColor="Silver" Margin="5" VerticalOptions="CenterAndExpand">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    
+                </StackLayout>
+            </Frame>
+        </ContentPage>
+    </TabbedPage.Children>
+</TabbedPage>

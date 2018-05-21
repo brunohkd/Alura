@@ -1,4 +1,5 @@
 ﻿using App1.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -24,9 +25,11 @@ namespace App1
 
                 HttpResponseMessage resposta = null;
 
+                cliente.BaseAddress = new Uri(URL_POST_LOGIN);
+
                 try
                 {
-                    resposta = await cliente.PostAsync(URL_POST_LOGIN, camposFormulario);
+                    resposta = await cliente.PostAsync("/login", camposFormulario);
                 }
                 catch 
                 {
@@ -36,7 +39,11 @@ Por favor, verifique sua conexão e tente novamente mais tarde."), "FalhaLogin")
 
                 if (resposta.IsSuccessStatusCode)
                 {
-                    MessagingCenter.Send<Usuario>(new Usuario(), "SucessoLogin");
+                    var conteudo = await resposta.Content.ReadAsStringAsync();
+
+                    var resultadoLogin = JsonConvert.DeserializeObject<ResultadoLogin>(conteudo);
+
+                    MessagingCenter.Send<Usuario>(resultadoLogin.usuario, "SucessoLogin");
                 }
                 else
                 {

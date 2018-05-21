@@ -2,18 +2,30 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace App1.ViewModels
 {
 
     public class MasterViewModel
     {
-        private readonly Usuario usuario;
+        private Usuario usuario;
+
+        public Usuario Usuario
+        {
+            get { return this.Usuario; }
+            set { this.Usuario = value; }
+        }
 
         public MasterViewModel(Usuario usuario)
         {
-            this.usuario = usuario;                                                                                  
-        }
+            this.usuario = usuario;
+            EditarPerfilCommand = new Command(() =>
+            {
+                MessagingCenter.Send<Usuario>(usuario, "EditarPerfil");
+            });
+;        }
 
         private string nome = "Meu nome";
 
@@ -31,6 +43,7 @@ namespace App1.ViewModels
             set { this.usuario.email = value; }
         }
 
+        public ICommand EditarPerfilCommand { get; private set; }
 
     }
 }
