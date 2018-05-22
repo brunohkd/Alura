@@ -8,7 +8,7 @@ using Xamarin.Forms;
 namespace App1.ViewModels
 {
 
-    public class MasterViewModel
+    public class MasterViewModel : BaseViewModel
     {
         private Usuario usuario;
 
@@ -33,6 +33,12 @@ namespace App1.ViewModels
             SalvarDadosCommand = new Command(() =>
             {
                 MessagingCenter.Send<Usuario>(usuario, "SucessoSalvarUsuario");
+                Editando = false;
+                OnPropertyChanged();
+            });
+            EditarDadosCommand = new Command(() =>
+            {
+                this.Editando = true;
             });
         }
 
@@ -68,10 +74,28 @@ namespace App1.ViewModels
             set { this.usuario.telefone = value; }
         }
 
+        private bool editando = false;
+        public bool Editando
+        {
+            get { return editando; }
+            private set {
+                editando = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ImageSource fotoPerfil = "profile.png";
+        public ImageSource FotoPerfil
+        {
+            get { return fotoPerfil; }
+            set { fotoPerfil = value; }
+        }
 
         public ICommand EditarPerfilCommand { get; private set; }
 
         public ICommand SalvarDadosCommand { get; private set; }
+
+        public ICommand EditarDadosCommand { get; private set; }
 
     }
 }

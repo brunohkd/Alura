@@ -52,5 +52,6 @@ namespace App1.Views
             MessagingCenter.Unsubscribe<Usuario>(this, "EditarPerfil");
             MessagingCenter.Unsubscribe<Usuario>(this, "SucessoSalvarUsuario");
         }
+
     }
 }
