@@ -20,7 +20,17 @@
         <ContentPage Title="Editar">
             <Frame BorderColor="Silver" Margin="5" VerticalOptions="CenterAndExpand">
                 <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-                    
+                    <TableView>
+                        <TableRoot>
+                            <TableSection Title="Dados Pessoais">
+                                <EntryCell Placeholder="Nome" Text="{Binding Nome}"></EntryCell>
+                                <EntryCell Placeholder="Data de Nascimento" Text="{Binding DataNascimento}"/>
+                                <EntryCell Placeholder="Telefone" Text="{Binding Telfone}"/>
+                                <EntryCell Placeholder="E-mail" Text="{Binding Email}"/>
+                            </TableSection>
+                        </TableRoot>
+                    </TableView>
+                    <Button Text="Salvar" Command="{Binding SalvarDadosCommand}"/>
                 </StackLayout>
             </Frame>
         </ContentPage>

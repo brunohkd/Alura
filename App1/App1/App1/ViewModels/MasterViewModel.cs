@@ -21,13 +21,22 @@ namespace App1.ViewModels
         public MasterViewModel(Usuario usuario)
         {
             this.usuario = usuario;
+            DefinirComandos(usuario);
+        }
+
+        private void DefinirComandos(Usuario usuario)
+        {
             EditarPerfilCommand = new Command(() =>
             {
                 MessagingCenter.Send<Usuario>(usuario, "EditarPerfil");
             });
-;        }
+            SalvarDadosCommand = new Command(() =>
+            {
+                MessagingCenter.Send<Usuario>(usuario, "SucessoSalvarUsuario");
+            });
+        }
 
-        private string nome = "Meu nome";
+        //private string nome = "Meu nome";
 
         public string Nome
         {
@@ -35,7 +44,7 @@ namespace App1.ViewModels
             set { this.usuario.nome = value; }
         }
 
-        private string email = "meuemail@gmail.com";
+        //private string email = "meuemail@gmail.com";
 
         public string Email
         {
@@ -43,7 +52,26 @@ namespace App1.ViewModels
             set { this.usuario.email = value; }
         }
 
+        //private string dataNascimento;
+
+        public string DataNascimento
+        {
+            get { return this.usuario.dataNascimento; }
+            set { this.usuario.dataNascimento = value; }
+        }
+
+        //private string telefone;
+
+        public string Telefone
+        {
+            get { return this.usuario.telefone; }
+            set { this.usuario.telefone = value; }
+        }
+
+
         public ICommand EditarPerfilCommand { get; private set; }
+
+        public ICommand SalvarDadosCommand { get; private set; }
 
     }
 }
