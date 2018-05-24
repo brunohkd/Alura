@@ -18,7 +18,7 @@ namespace App1.Views
 
         public AgendamentoView (Veiculo veiculo)
 		{
-			InitializeComponent ();
+			InitializeComponent();
             this.ViewModel = new AgendamentoViewModel(veiculo);
             this.BindingContext = ViewModel;
 		}

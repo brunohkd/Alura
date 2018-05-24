@@ -1,4 +1,6 @@
-﻿using App1.Models;
+﻿using App1.Media;
+using App1.Models;
+using Plugin.Media;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,7 +12,7 @@ namespace App1.ViewModels
 
     public class MasterViewModel : BaseViewModel
     {
-        private Usuario usuario;
+        private readonly Usuario usuario;
 
         public Usuario Usuario
         {
@@ -40,9 +42,11 @@ namespace App1.ViewModels
             {
                 this.Editando = true;
             });
+            TirarFotoCommand = new Command(() =>
+            {
+                DependencyService.Get<ICamera>().TirarFoto();
+            });
         }
-
-        //private string nome = "Meu nome";
 
         public string Nome
         {
@@ -50,23 +54,17 @@ namespace App1.ViewModels
             set { this.usuario.nome = value; }
         }
 
-        //private string email = "meuemail@gmail.com";
-
         public string Email
         {
             get { return this.usuario.email; }
             set { this.usuario.email = value; }
         }
 
-        //private string dataNascimento;
-
         public string DataNascimento
         {
             get { return this.usuario.dataNascimento; }
             set { this.usuario.dataNascimento = value; }
         }
-
-        //private string telefone;
 
         public string Telefone
         {
@@ -96,6 +94,8 @@ namespace App1.ViewModels
         public ICommand SalvarDadosCommand { get; private set; }
 
         public ICommand EditarDadosCommand { get; private set; }
+
+        public ICommand TirarFotoCommand { get; private set; }
 
     }
 }

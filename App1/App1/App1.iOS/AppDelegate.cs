@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using App1.iOS;
 using Foundation;
 using UIKit;
 
+[assembly: Xamarin.Forms.Dependency(typeof(AppDelegate))]
 namespace App1.iOS
 {
     // The UIApplicationDelegate for the application. This class is responsible for launching the 
@@ -27,5 +28,6 @@ namespace App1.iOS
 
             return base.FinishedLaunching(app, options);
         }
+
     }
 }

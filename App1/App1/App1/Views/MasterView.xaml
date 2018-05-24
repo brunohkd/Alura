@@ -28,6 +28,7 @@
             <Frame BorderColor="Silver" Margin="5" VerticalOptions="CenterAndExpand">
                 <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
                     <Image Source="{Binding FotoPerfil}" WidthRequest="60"/>
+                    <Button Text="Tirar Foto" Command="{Binding TirarFotoCommand}" />
                     <TableView>
                         <TableRoot>
                             <TableSection Title="Dados Pessoais">
