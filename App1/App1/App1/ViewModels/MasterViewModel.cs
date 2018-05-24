@@ -46,6 +46,11 @@ namespace App1.ViewModels
             {
                 DependencyService.Get<ICamera>().TirarFoto();
             });
+
+            MessagingCenter.Subscribe<byte[]>(this, "FotoTirada", (msg) =>
+            {
+
+            });
         }
 
         public string Nome

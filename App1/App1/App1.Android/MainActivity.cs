@@ -72,9 +72,16 @@ namespace App1.Droid
         {
             base.OnActivityResult(requestCode, resultCode, data);
 
-            if(resultCode == Result.Ok)
-                MessagingCenter.Send<Java.IO.File>(arquivoImagem, "TirarFoto");
+            if(resultCode == Result.Ok) {
 
+                byte[] bytes;
+
+                using (var stream = new Java.IO.FileInputStream(arquivoImagem)) {
+                    bytes = new byte[arquivoImagem.Length()];
+                    stream.Read(bytes);
+                }
+                MessagingCenter.Send<byte[]>(bytes, "FotoTirada");
+            }
         }
     }
 }
