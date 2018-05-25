@@ -3,6 +3,7 @@ using App1.Models;
 using Plugin.Media;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -47,9 +48,9 @@ namespace App1.ViewModels
                 DependencyService.Get<ICamera>().TirarFoto();
             });
 
-            MessagingCenter.Subscribe<byte[]>(this, "FotoTirada", (msg) =>
+            MessagingCenter.Subscribe<byte[]>(this, "FotoTirada", (bytes) =>
             {
-
+                FotoPerfil = ImageSource.FromStream(() => new MemoryStream(bytes));
             });
         }
 
@@ -91,7 +92,11 @@ namespace App1.ViewModels
         public ImageSource FotoPerfil
         {
             get { return fotoPerfil; }
-            set { fotoPerfil = value; }
+            private set
+            {
+                fotoPerfil = value;
+                OnPropertyChanged();
+            }
         }
 
         public ICommand EditarPerfilCommand { get; private set; }

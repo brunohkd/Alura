@@ -1,4 +1,5 @@
-﻿using App1.Models;
+﻿using App1.Data;
+using App1.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -14,26 +15,26 @@ namespace App1.ViewModels
         const string URL_POST_SALVAR_AGENDAMENTO = "http://aluracar.herokuapp.com/salvaragendamento";
 
         public Agendamento Agendamento { get; set; }
-        public Veiculo Veiculo
-        {
-            get
-            {
-                return Agendamento.Veiculo;
-            }
-            set
-            {
-                Agendamento.Veiculo = value;
-            }
-        }
+        //public Veiculo Veiculo
+        //{
+        //    get
+        //    {
+        //        return Agendamento.Veiculo;
+        //    }
+        //    set
+        //    {
+        //        Agendamento.Veiculo = value;
+        //    }
+        //}
         public string Nome
         {
             get
             {
-                return Agendamento.Nome;
+                return this.Agendamento.Nome;
             }
             set
             {
-                Agendamento.Nome = value;
+                this.Agendamento.Nome = value;
                 OnPropertyChanged();
                 ((Command)AgendarCommand).ChangeCanExecute();
             }
@@ -42,11 +43,11 @@ namespace App1.ViewModels
         {
             get
             {
-                return Agendamento.Fone;
+                return this.Agendamento.Fone;
             }
             set
             {
-                Agendamento.Fone = value;
+                this.Agendamento.Fone = value;
                 OnPropertyChanged();
                 ((Command)AgendarCommand).ChangeCanExecute();
             }
@@ -55,11 +56,11 @@ namespace App1.ViewModels
         {
             get
             {
-                return Agendamento.Email;
+                return this.Agendamento.Email;
             }
             set
             {
-                Agendamento.Email = value;
+                this.Agendamento.Email = value;
                 OnPropertyChanged();
                 ((Command)AgendarCommand).ChangeCanExecute();
             }
@@ -69,11 +70,11 @@ namespace App1.ViewModels
         {
             get
             {
-                return Agendamento.DataAgendamento;
+                return this.Agendamento.DataAgendamento;
             }
             set
             {
-                Agendamento.DataAgendamento = value;
+                this.Agendamento.DataAgendamento = value;
             }
         }
 
@@ -81,20 +82,30 @@ namespace App1.ViewModels
         {
             get
             {
-                return Agendamento.HoraAgendamento;
+                return this.Agendamento.HoraAgendamento;
             }
             set
             {
-                Agendamento.HoraAgendamento = value;
+                this.Agendamento.HoraAgendamento = value;
             }
         }
 
-        public AgendamentoViewModel(Veiculo veiculo)
+        public string Modelo
         {
-            this.Agendamento = new Agendamento
-            {
-                Veiculo = veiculo
-            };
+            get { return this.Agendamento.Modelo; }
+            set { this.Agendamento.Modelo = value; }
+        }
+
+        public decimal Preco
+        {
+            get { return this.Agendamento.Preco; }
+            set { this.Agendamento.Preco = value; }
+        }
+
+
+        public AgendamentoViewModel(Veiculo veiculo, Usuario usuario)
+        {
+            this.Agendamento = new Agendamento(usuario.nome, usuario.telefone, usuario.email, veiculo.Nome, veiculo.Preco );
 
             AgendarCommand = new Command(() => {
                 MessagingCenter.Send<Agendamento>(this.Agendamento, "Agendamento");
@@ -112,31 +123,44 @@ namespace App1.ViewModels
             HttpClient cliente = new HttpClient();
 
             var dataHoraAgendamento = new DateTime(DataAgendamento.Year, DataAgendamento.Month, DataAgendamento.Day,
-                HoraAgendamento.Hours,HoraAgendamento.Minutes, HoraAgendamento.Seconds);
+                HoraAgendamento.Hours, HoraAgendamento.Minutes, HoraAgendamento.Seconds);
 
             var json = JsonConvert.SerializeObject(new
             {
                 nome = Nome,
                 fone = Fone,
                 email = Email,
-                carro = Veiculo.Nome,
-                preco = Veiculo.Preco,
+                carro = Modelo,
+                preco = Preco,
                 dataAgendamento = dataHoraAgendamento
             });
 
             var conteudo = new StringContent(json, Encoding.UTF8, "application/json");
 
             var resposta = await cliente.PostAsync(URL_POST_SALVAR_AGENDAMENTO, conteudo);
+            SalvarAgendamentoDB();
+
             if (resposta.IsSuccessStatusCode)
             {
 
                 MessagingCenter.Send<Agendamento>(this.Agendamento, "SucessoAgendamento");
 
-            } else
+            }
+            else
             {
                 MessagingCenter.Send<ArgumentException>(new ArgumentException(), "ErroAgendamento");
             }
 
+        }
+
+        private void SalvarAgendamentoDB()
+        {
+            using (var conexao = DependencyService.Get<ISQLite>().PegarConexao())
+            {
+                AgendamentoDAO dao = new AgendamentoDAO(conexao);
+
+                dao.Salvar(new Agendamento(Nome, Fone, Email, Modelo, Preco));
+            }
         }
     }
 }
