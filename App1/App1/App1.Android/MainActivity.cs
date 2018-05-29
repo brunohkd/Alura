@@ -32,7 +32,6 @@ namespace App1.Droid
             intent.AddFlags(ActivityFlags.GrantWriteUriPermission);
 
 
-
             //var activity = Forms.Context as Activity;
             var activity = Forms.Context as Activity;
             activity.StartActivityForResult(intent, 0);

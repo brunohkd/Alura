@@ -34,9 +34,12 @@ namespace App1.ViewModels
             }
         }
 
-        public ListagemViewModel()
+        readonly Usuario usuario;
+
+        public ListagemViewModel(Usuario usuario)
         {
             this.Veiculos = new ObservableCollection<Veiculo>();
+            this.usuario = usuario;
         }
 
         public async Task GetVeiculos()

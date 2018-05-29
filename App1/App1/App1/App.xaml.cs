@@ -14,6 +14,7 @@ namespace App1
 			InitializeComponent();
 
             MainPage = new LoginView();
+
 			//MainPage = new NavigationPage(new ListagemView());
 		}
 

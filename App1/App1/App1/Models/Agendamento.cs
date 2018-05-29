@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,6 +7,8 @@ namespace App1.Models
 {
     public class Agendamento
     {
+        [PrimaryKey, AutoIncrement]
+        public long ID { get; set; }
         public string Nome { get; set; }
         public string Fone { get; set; }
         public string Email { get; set; }
@@ -38,6 +41,14 @@ namespace App1.Models
             }
         }
 
+        public String DataFormatada
+        {
+            get
+            {
+                return DataAgendamento.Add(HoraAgendamento).ToString("dd/MM/yyyy HH:mm");
+            }
+        }
+
         public Agendamento(string nome, string fone, string email, string modelo, decimal preco)
         {
             this.Nome = nome;
@@ -47,5 +58,16 @@ namespace App1.Models
             this.Preco = preco;
         }
 
+        public Agendamento(string nome, string fone, string email, string modelo, decimal preco, DateTime dataAgendamento, TimeSpan horaAgendamento)
+            : this(nome, fone, email, modelo, preco)
+        {
+            this.DataAgendamento = dataAgendamento;
+            this.HoraAgendamento = horaAgendamento;
+        }
+
+        public Agendamento()
+        {
+
+        }
     }
 }

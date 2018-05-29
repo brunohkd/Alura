@@ -25,6 +25,15 @@ namespace App1.ViewModels
         {
             this.usuario = usuario;
             DefinirComandos(usuario);
+            AssinarMensagens();
+        }
+
+        private void AssinarMensagens()
+        {
+            MessagingCenter.Subscribe<byte[]>(this, "FotoTirada", (bytes) =>
+            {
+                FotoPerfil = ImageSource.FromStream(() => new MemoryStream(bytes));
+            });
         }
 
         private void DefinirComandos(Usuario usuario)
@@ -47,11 +56,16 @@ namespace App1.ViewModels
             {
                 DependencyService.Get<ICamera>().TirarFoto();
             });
-
-            MessagingCenter.Subscribe<byte[]>(this, "FotoTirada", (bytes) =>
+            MeusAgendamentosCommand = new Command(() =>
             {
-                FotoPerfil = ImageSource.FromStream(() => new MemoryStream(bytes));
+                MessagingCenter.Send<Usuario>(usuario, "MeusAgendamentos");
             });
+            NovoAgendamentoCommand = new Command(() =>
+            {
+                MessagingCenter.Send<Usuario>(usuario, "NovoAgendamento");
+            });
+
+
         }
 
         public string Nome
@@ -107,5 +121,8 @@ namespace App1.ViewModels
 
         public ICommand TirarFotoCommand { get; private set; }
 
+        public ICommand MeusAgendamentosCommand { get; set; }
+
+        public ICommand NovoAgendamentoCommand { get; set; }
     }
 }

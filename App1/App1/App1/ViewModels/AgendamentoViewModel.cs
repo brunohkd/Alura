@@ -15,17 +15,7 @@ namespace App1.ViewModels
         const string URL_POST_SALVAR_AGENDAMENTO = "http://aluracar.herokuapp.com/salvaragendamento";
 
         public Agendamento Agendamento { get; set; }
-        //public Veiculo Veiculo
-        //{
-        //    get
-        //    {
-        //        return Agendamento.Veiculo;
-        //    }
-        //    set
-        //    {
-        //        Agendamento.Veiculo = value;
-        //    }
-        //}
+        
         public string Nome
         {
             get
@@ -105,7 +95,7 @@ namespace App1.ViewModels
 
         public AgendamentoViewModel(Veiculo veiculo, Usuario usuario)
         {
-            this.Agendamento = new Agendamento(usuario.nome, usuario.telefone, usuario.email, veiculo.Nome, veiculo.Preco );
+            this.Agendamento = new Agendamento(usuario.nome, usuario.telefone, usuario.email, veiculo.Nome, veiculo.Preco);
 
             AgendarCommand = new Command(() => {
                 MessagingCenter.Send<Agendamento>(this.Agendamento, "Agendamento");
@@ -157,6 +147,7 @@ namespace App1.ViewModels
         {
             using (var conexao = DependencyService.Get<ISQLite>().PegarConexao())
             {
+
                 AgendamentoDAO dao = new AgendamentoDAO(conexao);
 
                 dao.Salvar(new Agendamento(Nome, Fone, Email, Modelo, Preco));

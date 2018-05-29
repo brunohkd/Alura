@@ -2,6 +2,7 @@
 using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace App1.Data
@@ -11,6 +12,16 @@ namespace App1.Data
 
         readonly SQLiteConnection conn;
 
+        private List<Agendamento> lista;
+        public List<Agendamento> Lista
+        {
+            get
+            {
+                return conn.Table<Agendamento>().ToList();
+            }
+            private set { lista = value; }
+        }
+
         public AgendamentoDAO(SQLiteConnection conexao)
         {
             this.conn = conexao;
@@ -19,8 +30,16 @@ namespace App1.Data
 
         public void Salvar(Agendamento agendamento)
         {
+            try { 
 
+                conn.Insert(agendamento);
+
+            } catch (Exception)
+            {
+                conn.Rollback();
+            }
         }
+
 
     }
 }

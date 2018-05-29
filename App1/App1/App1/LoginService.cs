@@ -15,6 +15,7 @@ namespace App1
 
         public async Task FazerLogin(Login login)
         {
+            Console.WriteLine("Iniciando um novo HttpClient()");
             using (var cliente = new HttpClient())
             {
                 var camposFormulario = new FormUrlEncodedContent(new[]
@@ -29,16 +30,19 @@ namespace App1
 
                 try
                 {
+                    Console.WriteLine("Method: PostAsync");
                     resposta = await cliente.PostAsync("/login", camposFormulario);
                 }
                 catch 
                 {
+                    Console.WriteLine("Method: LoginException: Falha no PostAsync");
                     MessagingCenter.Send<LoginException>(new LoginException(@"Ocorreu um erro inesperado.
 Por favor, verifique sua conexão e tente novamente mais tarde."), "FalhaLogin");
                 }
 
                 if (resposta.IsSuccessStatusCode)
                 {
+                    Console.WriteLine("Retorno com sucesso do Response");
                     var conteudo = await resposta.Content.ReadAsStringAsync();
 
                     var resultadoLogin = JsonConvert.DeserializeObject<ResultadoLogin>(conteudo);
@@ -47,6 +51,7 @@ Por favor, verifique sua conexão e tente novamente mais tarde."), "FalhaLogin")
                 }
                 else
                 {
+                    Console.WriteLine("LoginException: usuário ou senha incorretos.");
                     MessagingCenter.Send<LoginException>(new LoginException("Usuário ou Senha incorretos."), "FalhaLogin");
                 }
             }

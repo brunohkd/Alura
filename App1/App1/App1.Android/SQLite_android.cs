@@ -24,9 +24,14 @@ namespace App1.Droid
         public SQLiteConnection PegarConexao()
         {
 
-            var caminhodb = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.Path, NOME_ARQUIVO_DB);
+            //var caminhodb = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.Path, NOME_ARQUIVO_DB);
 
-            return new SQLite.SQLiteConnection(caminhodb);
+            //var path = System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), NOME_ARQUIVO_DB);
+            var path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            path = Path.Combine(path, NOME_ARQUIVO_DB);
+
+
+            return new SQLite.SQLiteConnection(path);
         }
     }
 }

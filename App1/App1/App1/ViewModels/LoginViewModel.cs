@@ -18,6 +18,7 @@ namespace App1.ViewModels
             EntrarCommand = new Command( async () =>
             {
                 var loginService = new LoginService();
+                Console.WriteLine("Method: loginService.FazerLogin");
                 await loginService.FazerLogin(new Login(usuario, senha));
 
             }, () =>

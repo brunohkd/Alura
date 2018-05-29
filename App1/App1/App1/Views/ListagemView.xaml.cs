@@ -18,7 +18,7 @@ namespace App1.Views
 		public ListagemView(Usuario usuario)
 		{
 		    InitializeComponent();
-            this.ViewModel = new ListagemViewModel();
+            this.ViewModel = new ListagemViewModel(usuario);
             this.usuario = usuario;
             this.BindingContext = this.ViewModel;
         }
