@@ -30,10 +30,16 @@ namespace App1.Data
 
         public void Salvar(Agendamento agendamento)
         {
-            try { 
+            try {
 
-                conn.Insert(agendamento);
-
+               if(conn.Find<Agendamento>(agendamento.ID) == null)
+                {
+                    conn.Insert(agendamento);
+                }
+                else
+                {
+                    conn.Update(agendamento);
+                }
             } catch (Exception)
             {
                 conn.Rollback();

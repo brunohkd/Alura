@@ -12,6 +12,15 @@ using Plugin.Media;
 using Java.Lang.Reflect;
 using Android.Support.V4.Content;
 using Android.Support.Compat;
+using Android;
+using Android.Support.V4.App;
+using Android.Util;
+using Android.Support.Design.Widget;
+using static Android.Resource;
+using Android.Runtime;
+using Android.Widget;
+using Android.Graphics;
+using System.IO;
 
 [assembly: Xamarin.Forms.Dependency(typeof(MainActivity))]
 namespace App1.Droid
@@ -22,20 +31,26 @@ namespace App1.Droid
         static Java.IO.File arquivoImagem;
         public void TirarFoto()
         {
-            Intent intent = new Intent(MediaStore.ActionImageCapture);
 
-            arquivoImagem = PegarArquivoImagem();
+            if(ContextCompat.CheckSelfPermission(Forms.Context, Manifest.Permission.Camera) == Permission.Granted) { 
 
-            //intent.PutExtra(MediaStore.ExtraOutput, Android.Net.Uri.FromFile(arquivoImagem));
-            intent.PutExtra(MediaStore.ExtraOutput, arquivoImagem);
-            intent.AddFlags(ActivityFlags.GrantReadUriPermission);
-            intent.AddFlags(ActivityFlags.GrantWriteUriPermission);
+                Intent intent = new Intent(MediaStore.ActionImageCapture);
 
+                arquivoImagem = PegarArquivoImagem();
 
-            //var activity = Forms.Context as Activity;
-            var activity = Forms.Context as Activity;
-            activity.StartActivityForResult(intent, 0);
-            
+                //intent.PutExtra(MediaStore.ExtraOutput, Android.Net.Uri.FromFile(arquivoImagem));
+                intent.PutExtra(MediaStore.ExtraOutput, arquivoImagem);
+
+                //var activity = Forms.Context as Activity;
+                var activity = Forms.Context as Activity;
+                activity.StartActivityForResult(intent, 0);
+            } else
+            {
+                ActivityCompat.RequestPermissions(Forms.Context as Activity, new string[] {
+                    Manifest.Permission.Camera, Manifest.Permission.WriteExternalStorage,
+                    Manifest.Permission.ReadExternalStorage }, 100);
+            }
+
         }
 
         private static Java.IO.File PegarArquivoImagem()
@@ -73,13 +88,49 @@ namespace App1.Droid
 
             if(resultCode == Result.Ok) {
 
+
                 byte[] bytes;
 
-                using (var stream = new Java.IO.FileInputStream(arquivoImagem)) {
-                    bytes = new byte[arquivoImagem.Length()];
-                    stream.Read(bytes);
+                try
+                {
+                    using (var stream = new Java.IO.FileInputStream(arquivoImagem)) {
+                        bytes = new byte[arquivoImagem.Length()];
+                        stream.Read(bytes);
+                    }
+                } catch
+                {
+                    Bitmap bitmap = (Bitmap)data.Extras.Get("data");
+                    bytes = new byte[bitmap.Width * bitmap.Height * 4];
+                    using (var stream = new MemoryStream()) { 
+                        bitmap.Compress(Bitmap.CompressFormat.Png, 80, stream);
+                        stream.Flush();
+                    }
                 }
+
                 MessagingCenter.Send<byte[]>(bytes, "FotoTirada");
+            }
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
+        {
+            if(requestCode == 100)
+            {
+                Log.Info("TAG", "RequestCode igual a 100.");
+                if ((grantResults.Length == 1) && (grantResults[0] == Permission.Granted))
+                {
+                    Log.Info("TAG", "Recebido a permissão de Camera");
+                    TirarFoto();
+                    
+                } else
+                {
+                    Log.Info("TAG", "Não recebido a permissão de Camera");
+                    Toast.MakeText(this, "Não foi possível abrir a camera.", Android.Widget.ToastLength.Short);
+                }
+            }
+            else
+            {
+                Log.Info("TAG", "RequestCode é diferente.");
+                base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             }
         }
     }

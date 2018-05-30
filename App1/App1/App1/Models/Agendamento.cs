@@ -14,6 +14,7 @@ namespace App1.Models
         public string Email { get; set; }
         public string Modelo { get; set; }
         public decimal Preco { get; set; }
+        public bool Confirmado { get; set; }
 
         DateTime dataAgendamento = DateTime.Today;
         public DateTime DataAgendamento
@@ -63,6 +64,12 @@ namespace App1.Models
         {
             this.DataAgendamento = dataAgendamento;
             this.HoraAgendamento = horaAgendamento;
+        }
+
+        public Agendamento(string nome, string fone, string email, string modelo, decimal preco, DateTime dataAgendamento, TimeSpan horaAgendamento, bool confirmado)
+            : this(nome, fone, email, modelo, preco, dataAgendamento, horaAgendamento)
+        {
+            this.Confirmado = confirmado;
         }
 
         public Agendamento()
